@@ -1,5 +1,34 @@
 <template>
   <div id="app">
+    <input type="text" v-model="textComputed">
+    <h3>
+      Text value
+      <i>{{text}}</i>
+    </h3>
+    <div class="checkboxes">
+      <input type="checkbox" v-model="checkbox">
+      <h3>
+        checkbox value
+        <i>{{checkbox}}</i>
+      </h3>
+      <input type="checkbox" v-model="checkboxArray" value="one">
+      <input type="checkbox" v-model="checkboxArray" value="two">
+      <input type="checkbox" v-model="checkboxArray" value="three">
+      <h3>
+        checkboxArray value
+        <i>{{checkboxArray}}</i>
+      </h3>
+    </div>
+    <div>
+      <Select v-model="select">
+        <option value="Mersedes">Mersedes</option>
+        <option value="lada">Lada</option>
+      </Select>
+      <h3>
+        select value
+        <i>{{select}}</i>
+      </h3>
+    </div>
     <!-- <h1>{{firstName}}</h1>
     <h2>{{ num + 2}}</h2>
     <h3>{{obj.age}}</h3>
@@ -56,24 +85,28 @@
     class="title"
     :class="[classObj, activeClass]">Hello Max
     </h1> -->
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld :user-object="user" :title="title" @onClickCounter='onClickCounterHandler' />
+    <!-- <img alt="Vue logo" src="./assets/logo.png">
+    <HelloWorld :user-object="user" :title="title" @onClickCounter='onClickCounterHandler' /> -->
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+// import HelloWorld from './components/HelloWorld.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
+    // HelloWorld,
   },
   data: () => ({
-    user: {
-      name: 'Max',
-    },
-    title: 'Some title',
+    text: '',
+    checkbox: false,
+    checkboxArray: [],
+    select: '',
+    // user: {
+    // name: 'Max',
+    // },
+    // title: 'Some title',
     // activeClass: 'my-class',
     // isActive: false,
     // fontSize: 30,
@@ -99,6 +132,15 @@ export default {
     // },
   }),
   computed: {
+    textComputed: {
+      get() {
+        return this.text;
+      },
+      set(value) {
+        console.log(value);
+        this.text = value;
+      },
+    },
     // classObj() {
     //   return {
     //     'active-class': this.isActive,
@@ -125,9 +167,9 @@ export default {
     // lN: 'onLastNameUpdate',
   },
   methods: {
-    onClickCounterHandler(value) {
-      console.log('In component: ', value);
-    },
+    // onClickCounterHandler(value) {
+    //   console.log('In component: ', value);
+    // },
     // onLastNameUpdate(value) {
     //   console.log('watch', value);
     // },
