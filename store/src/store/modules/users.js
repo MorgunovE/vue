@@ -1,3 +1,5 @@
+// 8-3
+import Vue from "vue";
 // 4
 const usersStore = {
   // 4-3
@@ -16,12 +18,19 @@ const usersStore = {
     // 4-5
     usersList: ({ list }) => Object.values(list),
   },
-  mutations: {},
+  mutations: {
+    // 8-1
+    ADD_USER(state, user) {
+      // 8-4
+      Vue.set(state.list, user.id, user);
+    },
+  },
   actions: {
     // 8
-    addNewUser(contex, user) {
-      console.log(contex);
-      console.log(user);
+    addNewUser({ commit }, user) {
+      const newUser = { ...user, id: String(Math.random()) };
+      // 8-2
+      commit("ADD_USER", newUser);
     },
   },
 };
